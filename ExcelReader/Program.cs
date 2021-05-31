@@ -28,7 +28,7 @@ namespace ExcelReader
 
             foreach (var i in loadedIngredients)
             {
-                Console.WriteLine($"{i.id } {i.name}");
+                Console.WriteLine($"{i.Id } {i.Name} {i.TotalKgCo2eq} {i.Category} calories {i.Caloriesperkg}");
             }
         }
 
@@ -48,22 +48,86 @@ namespace ExcelReader
             //while statement checks whether the field is null. if it is the document is over
             while (string.IsNullOrWhiteSpace(ws.Cells[row, col].Value?.ToString()) == false)
             {
-                Console.WriteLine("Not not null");
-                Ingredient p = new Ingredient
+                
+                Ingredient newI = new Ingredient
 
                 {
 
                     
-                    id = ws.Cells[row, col].Value.ToString(),
-                    name = ws.Cells[row, col + 1].Value.ToString(),
-                    //co2 = int.Parse(ws.Cells[row, col + 12].Value.ToString())
+                    Id = ws.Cells[row, col].Value.ToString(),
+                    Name = ws.Cells[row, col + 3].Value.ToString(),
+                    TotalKgCo2eq = decimal.Parse(ws.Cells[row, col + 12].Value.ToString()),
+                    Caloriesperkg = decimal.Parse(ws.Cells[row, col + 13].Value.ToString()),
+
 
 
 
                 };
-                output.Add(p);
+
+                string category = ws.Cells[row, col + 4].Value.ToString();
+                
+
+             if(category == CategoryDSK.Vegetables.ToString())
+                {
+                    newI.Category = CategoryDSK.Vegetables;
+                }
+             if(category == "Meat/poultry")
+                {
+                    newI.Category = CategoryDSK.Meat_poultry;
+                }
+                if (category == CategoryDSK.Beverages.ToString())
+                {
+                    newI.Category = CategoryDSK.Beverages;
+                }
+                if (category == "Bread/bakery products")
+                {
+                    newI.Category = CategoryDSK.Bread_bakeryProducts;
+                }
+                if (category == "Cereal/grain/pulse products")
+                {
+                    newI.Category = CategoryDSK.Cereal_grain_pulseProducts;
+                }
+                if (category == "Milk/eggs/substitute products")
+                {
+                    newI.Category = CategoryDSK.Milk_eggs_substituteProducts;
+                }
+                if (category == "Seasonings/preservatives/extracts")
+                {
+                    newI.Category = CategoryDSK.Seasonings_preservatives_extracts;
+                }
+                if (category == CategoryDSK.Seafood.ToString())
+                {
+                    newI.Category = CategoryDSK.Seafood;
+                }
+                if (category == "Prepared/preserved foods")
+                {
+                    newI.Category = CategoryDSK.Prepared_preservedFoods;
+                }
+                if (category == "Candy/sugar products")
+                {
+                    newI.Category = CategoryDSK.Candy_sugerProducts;
+                }
+                
+                if (category == CategoryDSK.Fruits.ToString())
+                {
+                    newI.Category = CategoryDSK.Fruits;
+                }
+                if (category == "Fruit/vegetable products")
+                {
+                    newI.Category = CategoryDSK.Fruit_vegetableProducts;
+                }
+                if (category == "Oils/fats edible")
+                {
+                    newI.Category = CategoryDSK.Oils_fatsEdible;
+                }
+                else
+                {
+                    
+                }
+
+                output.Add(newI);
                 row += 1;
-                Console.WriteLine("Not not null");
+                
 
             }
             return output;
@@ -88,8 +152,8 @@ namespace ExcelReader
                 Ingredient p = new Ingredient
 
                 {
-                    id = ws.Cells[row, col].Value.ToString(),
-                    //name = ws.Cells[row, col + 1].Value.ToString(),
+                    Id = ws.Cells[row, col].Value.ToString(),
+                    Name = ws.Cells[row, col + 1].Value.ToString(),
                     //co2 = int.Parse(ws.Cells[row, col + 2].Value.ToString())
                     
 
@@ -151,12 +215,12 @@ namespace ExcelReader
         //    return output;
         //}
 
-        public class Ingredient
-        {
-            public string id { get; set; }
-            public string name { get; set; }
-            //public int co2 { get; set; }
+        //public class Ingredient
+        //{
+        //    public string id { get; set; }
+        //    public string name { get; set; }
+        //    //public int co2 { get; set; }
 
-        }
+        //}
     }
 }
