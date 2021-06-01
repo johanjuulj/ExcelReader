@@ -11,21 +11,10 @@ namespace ExcelReader
     {
         static async Task Main(string[] args)
         {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
             var file = new FileInfo(@"C:\repo\ingredients.xlsx");
 
-
-            //var ingredients = GetSetupdata();
-
-            //await SaveExcelFile(ingredients, file);
-
-            //List<Ingredient> loadedIngredients = await LoadExcelData(file);
-
             Parser parser = new Parser();
-
-            List<Ingredient> loadedIngredients = await parser.LoadIngredientlData(file);
-
+             List<Ingredient> loadedIngredients = await parser.LoadIngredientlData(file);
 
 
             foreach (var i in loadedIngredients)

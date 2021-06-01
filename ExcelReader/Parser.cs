@@ -10,6 +10,20 @@ namespace ExcelReader
 {
     public class Parser
     {
+
+        public Parser()
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            
+            
+
+            //var ingredients = GetSetupdata();
+
+            //await SaveExcelFile(ingredients, file);
+
+            //List<Ingredient> loadedIngredients = await LoadExcelData(file);
+        }
         public  async Task<List<Ingredient>> LoadIngredientlData(FileInfo file)
         {
             List<Ingredient> output = new List<Ingredient>();
