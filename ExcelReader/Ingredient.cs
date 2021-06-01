@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExcelReader
 {
-    class Ingredient
+    public class Ingredient
     {
 
         public string Id { get; set; } 
